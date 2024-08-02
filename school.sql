@@ -161,3 +161,59 @@ INSERT INTO students (name, secondName, class) VALUES
 
 
 
+
+-- joins
+
+
+
+-- inner
+
+
+SELECT
+    students.name,             
+    students.secondName,        
+    teachers.name,               
+    teachers.familyname                   
+FROM students
+INNER JOIN teachers
+    ON students.class = teachers.supervising_class
+WHERE students.class = 2;
+
+
+-- left
+SELECT
+    classList.class_id,
+    teachers.name 
+    teachers.familyname 
+FROM classList
+LEFT JOIN teachers
+    ON classList.class_id = teachers.supervising_class;
+
+
+-- right
+
+SELECT
+    teachers.name,
+    teachers.familyname, 
+    classList.class_id AS class_id
+FROM classList
+RIGHT JOIN teachers
+    ON classList.class_id = teachers.supervising_class;
+
+-- full
+
+SELECT
+    students.id ,
+    students.name ,
+    students.secondName,
+    classList.class_id ,
+    classList.number_of_students 
+FROM students
+FULL OUTER JOIN classList
+    ON students.class = classList.class_id;
+
+
+-- cros join
+
+SELECT * FROM students
+CROSS JOIN classList
