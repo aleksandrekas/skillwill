@@ -25,6 +25,14 @@ CREATE TABLE students(
 )
 
 
+UPDATE classList clist
+JOIN (
+    SELECT class, COUNT(*) AS number_of_students
+    FROM students
+    GROUP BY class
+) students
+ON clist.class_id = students.class
+SET clist.number_of_students = students.number_of_students;
 
 
 
